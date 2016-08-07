@@ -1,8 +1,8 @@
 defmodule ReverseProxy.Forwarders.Giphy do
   use HTTPoison.Base
 
-  @host Application.get_env(:reverse_proxy, :forward_request)[:host]
-  @secret Application.get_env(:reverse_proxy, :forward_request)[:secret]
+  @host Application.get_env(:reverse_proxy, :giphy)[:host]
+  @secret Application.get_env(:reverse_proxy, :giphy)[:secret]
 
   def process_url(url) do
     @host <> url

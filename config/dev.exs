@@ -21,7 +21,6 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-config :reverse_proxy, :forward_request,
+config :reverse_proxy, :giphy,
   host: "http://api.giphy.com",
-  secret: "dc6zaTOxFJmzC",
-  client: ReverseProxy.Forwarders.Giphy
+  secret: "dc6zaTOxFJmzC"

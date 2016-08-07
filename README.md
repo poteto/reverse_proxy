@@ -25,7 +25,9 @@ forward "/*path", to: ReverseProxy.ForwardRequest
 
 This first begins in the [endpoint](lib/reverse_proxy/endpoint.ex) - the `ForwardRequest` plug is inserted prior to the `conn` hitting the `Router`.
 
-This [plug](web/strategies/forward_request.ex) checks the request's path to see if a route is already defined on the Router. If it does exist, the `conn` is simply passed through. If it doesn't, the plug will attempt to call the `client` module defined on [`dev.exs`](config/dev.exs) which is currently always a `HTTPoison.Base` wrapper around your actual API. The request is forwarded along to the right place, and if a response comes back it is simply passed back in the `conn`.
+This [plug](web/strategies/forward_request.ex) checks the request's path to see if a route is already defined on the Router. If it does exist, the `conn` is simply passed through. If it doesn't, the plug will attempt to call the `client` module which is currently always a `HTTPoison.Base` wrapper around your actual API. The request is forwarded along to the right place, and if a response comes back it is simply passed back in the `conn`.
+
+For example, start the app, then try to do a `GET` to `/api/{foo,bar,baz}` – they should work as normal. Then, try a `GET` to `/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
 
 ## How you would use it (API)
 
