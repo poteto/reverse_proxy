@@ -4,6 +4,23 @@
 
 A proof of concept Plug that intercepts requests to missing routes, and forwards them along to somewhere else of your choosing. The main use-case for this is to incrementally replace an API with Phoenix.
 
+## Why not wildcards?
+
+I was unable to get this working using wildcard paths. For example, the `forward` macro rejects dynamic segments:
+
+```elixir
+forward "/*path", to: ReverseProxy.ForwardRequest
+```
+
+```
+== Compilation error on file web/router.ex ==
+** (ArgumentError) Dynamic segment `"/*path"` not allowed when forwarding. Use a static path instead.
+    (phoenix) lib/phoenix/router/route.ex:172: Phoenix.Router.Route.forward_path_segments/3
+    web/router.ex:14: (module)
+    (stdlib) erl_eval.erl:670: :erl_eval.do_apply/6
+    (elixir) lib/kernel/parallel_compiler.ex:116: anonymous fn/4 in Kernel.ParallelCompiler.spawn_compilers/1
+```
+
 ## How it works
 
 This first begins in the [endpoint](lib/reverse_proxy/endpoint.ex) - the `ForwardRequest` plug is inserted prior to the `conn` hitting the `Router`.
