@@ -31,9 +31,8 @@ This [plug](web/strategies/forward_request.ex) checks the request's path to see 
 
 If there's interest and no other better solution, I will turn this into a Hex package. You would have to:
 
-1. Add options in `config`: pointing to the HTTP client in step 2
-1. Create the HTTP client that wraps your API. This client should have a similar interface (enforced via protocol) to HTTPoison (`get`, `post`, etc)
-1. Add the `ForwardRequest` plug to your `Endpoint`, just before the `Router`
+1. Create the HTTP client that wraps your API. This client should have a similar interface to HTTPoison (`get`, `post`, etc)
+1. Add the `ForwardRequest` plug to your `Endpoint`, just before the `Router`, passing in the client as an option
 1. Incrementally replace your API with Phoenix!
 1. All of your API is now in Phoenix, remove the package and carry on
 
