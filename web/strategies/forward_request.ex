@@ -32,6 +32,7 @@ defmodule ReverseProxy.ForwardRequest do
     conn = %{conn | resp_headers: headers}
     send_resp(conn, status_code, body)
   end
+  def send_response(%Plug.Conn{} = conn), do: conn
   def send_response(_) do
     raise "Could not forward request"
   end
