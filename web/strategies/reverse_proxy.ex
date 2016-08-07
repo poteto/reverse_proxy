@@ -28,9 +28,9 @@ defmodule ReverseProxy.ForwardRequest do
   end
   def handle_request({:ok, conn}), do: conn
 
-  def send_response({:ok, conn, res}) do
+  def send_response({:ok, conn, %{status_code: status_code, body: body}}) do
     conn = %{conn | resp_headers: res.headers}
-    send_resp(conn, res.status_code, res.body)
+    send_resp(conn, status_code, body)
   end
   def send_response(_) do
     raise "Could not forward request"
