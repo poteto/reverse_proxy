@@ -1,7 +1,7 @@
 defmodule ReverseProxy.Terraformers.Giphy do
   alias ReverseProxy.Clients.Giphy
   import Plug.Conn
-  import ReverseProxy.Terraform, only: [send_response: 1]
+  import Terraform, only: [send_response: 1]
 
   # match specific path
   def get("/v1/hello-world", conn) do
