@@ -1,7 +1,7 @@
 defmodule ReverseProxy.Terraformers.Giphy do
   alias ReverseProxy.Clients.Giphy
   import Plug.Conn
-  import ReverseProxy.Terraformer, only: [send_response: 1]
+  import ReverseProxy.Terraform, only: [send_response: 1]
 
   def get(path, %Plug.Conn{params: params, req_headers: req_headers} = conn) do
     res = Giphy.get!(path, req_headers, [params: Map.to_list(params)])
