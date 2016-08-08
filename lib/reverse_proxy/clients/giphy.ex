@@ -1,4 +1,4 @@
-defmodule ReverseProxy.Forwarders.Giphy do
+defmodule ReverseProxy.Clients.Giphy do
   use HTTPoison.Base
 
   @host Application.get_env(:reverse_proxy, :giphy)[:host]

@@ -36,10 +36,5 @@ defmodule ReverseProxy.Endpoint do
     key: "_reverse_proxy_key",
     signing_salt: "BKi/ZZMd"
 
-  # Forward requests if this app does not handle the endpoint
-  plug ReverseProxy.ForwardRequest,
-    client: ReverseProxy.Forwarders.Giphy,
-    router: ReverseProxy.Router
-
   plug ReverseProxy.Router
 end

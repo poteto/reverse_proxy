@@ -1,11 +1,13 @@
 defmodule ReverseProxy.Router do
   use ReverseProxy.Web, :router
+  use ReverseProxy.Terraformer.Discovery,
+    terraformer: ReverseProxy.Terraformers.Giphy
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", ReverseProxy do
+  scope "/v1", ReverseProxy do
     pipe_through :api
 
     get "/foo", FooController, :index
