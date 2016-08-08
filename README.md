@@ -8,9 +8,54 @@ This is currently being implemented as a Hex package called [Terraform](https://
 
 ## Demo
 
-Install dependencies, Start the app, then try to do a `GET` to `/v1/{foo,bar,baz}` – they should work as normal. Then, try a `GET` to `/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
+Install dependencies, start the app, then try to do a `GET` to `/v1/{foo,bar,baz}` – they should work as normal. Then, try a `GET` to `/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
 
 You can also try a `GET` to `/v1/hello-world`, which is an example of directly matching a request by path.
+
+## Example usage
+
+When `Terraform` is available for download, you'll be able to use it like this:
+
+First, add it to `web/router.ex`:
+
+```elixir
+defmodule ReverseProxy.Router do
+  use Terraform.Discovery,
+    terraformer: MyApp.Terraformers.Foo
+
+  # ...
+end
+```
+
+Then, define a new `Terraformer`:
+
+```elixir
+defmodule MyApp.Terraformers.Foo do
+  # example client made with HTTPoison
+  alias ReverseProxy.Clients.Foo
+  import Plug.Conn
+  import Terraform, only: [send_response: 1]
+
+  # match specific path
+  def get("/v1/hello-world", conn) do
+    send_resp(conn, 200, "Hello world")
+  end
+  # catch all `get`s
+  def get(path, %Plug.Conn{params: params, req_headers: req_headers} = conn) do
+    res = Foo.get!(path, req_headers, [params: Map.to_list(params)])
+    send_response({:ok, conn, res})
+  end
+
+  def put(_, _),      do: raise "Not implemented yet"
+  def patch(_, _),    do: raise "Not implemented yet"
+  def post(_, _),     do: raise "Not implemented yet"
+  def options(_, _),  do: raise "Not implemented yet"
+  def delete(_, _),   do: raise "Not implemented yet"
+  def head(_, _),     do: raise "Not implemented yet"
+  def trace(_, _),    do: raise "Not implemented yet"
+  def connect(_, _),  do: raise "Not implemented yet"
+end
+```
 
 ## Setup
 
