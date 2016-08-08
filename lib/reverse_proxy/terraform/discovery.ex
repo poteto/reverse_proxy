@@ -1,9 +1,9 @@
-defmodule ReverseProxy.Terraformer.Discovery do
+defmodule ReverseProxy.Terraform.Discovery do
   defmacro __using__(opts) do
     quote location: :keep do
       Module.register_attribute __MODULE__, :terraformer, []
       @terraformer Keyword.get(unquote(opts), :terraformer)
-      @before_compile ReverseProxy.Terraformer.Discovery
+      @before_compile ReverseProxy.Terraform.Discovery
     end
   end
 

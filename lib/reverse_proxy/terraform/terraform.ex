@@ -1,4 +1,4 @@
-defmodule ReverseProxy.Terraformer do
+defmodule ReverseProxy.Terraform do
   import Plug.Conn, only: [send_resp: 3]
 
   def send_response({:ok, conn, %{headers: headers, status_code: status_code, body: body}}) do
