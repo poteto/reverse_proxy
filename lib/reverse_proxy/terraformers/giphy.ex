@@ -3,6 +3,11 @@ defmodule ReverseProxy.Terraformers.Giphy do
   import Plug.Conn
   import ReverseProxy.Terraform, only: [send_response: 1]
 
+  # match specific path
+  def get("/v1/hello-world", conn) do
+    send_resp(conn, 200, "Hello world")
+  end
+  # catch all `get`s
   def get(path, %Plug.Conn{params: params, req_headers: req_headers} = conn) do
     res = Giphy.get!(path, req_headers, [params: Map.to_list(params)])
     send_response({:ok, conn, res})

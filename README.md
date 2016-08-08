@@ -10,6 +10,8 @@ This is currently being implemented as a Hex package called [Terraform](https://
 
 Install dependencies, Start the app, then try to do a `GET` to `/v1/{foo,bar,baz}` – they should work as normal. Then, try a `GET` to `/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
 
+You can also try a `GET` to `/v1/hello-world`, which is an example of directly matching a request by path.
+
 ## Setup
 
 To start your Phoenix app:
