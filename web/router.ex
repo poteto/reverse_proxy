@@ -1,6 +1,6 @@
 defmodule ReverseProxy.Router do
   use ReverseProxy.Web, :router
-  use Terraform.Discovery,
+  use Terraform,
     terraformer: ReverseProxy.Terraformers.Giphy
 
   pipeline :api do
