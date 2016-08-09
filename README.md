@@ -2,9 +2,7 @@
 
 ## What is this?
 
-A proof of concept Plug that intercepts requests to missing routes, and forwards them along to somewhere else of your choosing. The main use-case for this is to incrementally replace an API with Phoenix.
-
-This is currently being implemented as a Hex package called [Terraform](https://github.com/poteto/terraform). With `Terraform`, you'll be able to incrementally transform your API into one powered by Phoenix.
+[Terraform](https://github.com/poteto/terraform) is a simple Plug that intercepts requests to missing routes, and forwards them along to somewhere else of your choosing. The main use-case for this is to incrementally replace an API with Phoenix.
 
 ## Demo
 
