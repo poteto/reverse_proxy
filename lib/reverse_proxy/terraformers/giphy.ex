@@ -6,9 +6,7 @@ defmodule ReverseProxy.Terraformers.Giphy do
   plug :dispatch
 
   # match specific path
-  get "/v1/hello-world" do
-    send_resp(conn, 200, "Hello world")
-  end
+  get "/v1/hello-world", do: send_resp(conn, 200, "Hello world")
 
   # catch all `get`s
   get _ do

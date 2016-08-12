@@ -18,7 +18,7 @@ defmodule ReverseProxy.Mixfile do
   def application do
     [mod: {ReverseProxy, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :httpoison, :terraform]]
+                    :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
