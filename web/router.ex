@@ -10,6 +10,7 @@ defmodule ReverseProxy.Router do
   scope "/v1", ReverseProxy do
     pipe_through :api
 
+    get "/healthcheck", HealthcheckController, :index
     get "/foo", FooController, :index
     get "/bar", BarController, :index
     get "/baz", BazController, :index
