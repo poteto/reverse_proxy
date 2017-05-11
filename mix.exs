@@ -4,7 +4,7 @@ defmodule ReverseProxy.Mixfile do
   def project do
     [app: :reverse_proxy,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -17,8 +17,7 @@ defmodule ReverseProxy.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ReverseProxy, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :httpoison]]
+     extra_applications: [:logger]]
   end
 
   # Specifies which paths to compile per environment.
@@ -29,11 +28,11 @@ defmodule ReverseProxy.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.0"},
+    [{:phoenix, ">= 1.2.0 and < 2.0.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:httpoison, "~> 0.9.0"},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     {:terraform, "~> 0.1.1"}]
+     {:httpoison, "~> 0.11"},
+     {:gettext, "~> 0.13"},
+     {:cowboy, "~> 1.1"},
+     {:terraform, "~> 1.0.0"}]
   end
 end

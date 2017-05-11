@@ -1,6 +1,9 @@
 defmodule ReverseProxy.Terraformers.Giphy do
-  alias ReverseProxy.Clients.Giphy
   use Plug.Router
+  require Logger
+  alias ReverseProxy.Clients.Giphy
+
+  @host Application.get_env(:reverse_proxy, :giphy)[:host]
 
   plug :match
   plug :dispatch
@@ -11,6 +14,12 @@ defmodule ReverseProxy.Terraformers.Giphy do
   # catch all `get`s
   get _ do
     %{method: "GET", request_path: request_path, params: params, req_headers: req_headers} = conn
+    Logger.debug """
+    Processing by #{__MODULE__}
+      Path: #{@host <> request_path}
+      Parameters: #{inspect params}
+      Headers: #{inspect req_headers}
+    """
     res = Giphy.get!(request_path, req_headers, [params: Map.to_list(params)])
     send_response({:ok, conn, res})
   end

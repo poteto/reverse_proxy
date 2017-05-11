@@ -10,7 +10,9 @@ defmodule ReverseProxy.Clients.Giphy do
   end
 
   def process_request_headers(headers) do
-    List.keyreplace(headers, "accept", 0, {"accept", "application/json"})
+    headers
+    |> List.keyreplace("accept", 0, {"accept", "application/json"})
+    |> List.keydelete("host", 0)
   end
 
   defp append_secret(url) do

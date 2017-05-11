@@ -6,9 +6,19 @@
 
 ## Demo
 
-Install dependencies, start the app, then try to do a `GET` to `/v1/{foo,bar,baz}` – they should work as normal. Then, try a `GET` to `/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
+```
+mix do deps.get, deps.compile
+iex -S mix phoenix.server
+```
 
-You can also try a `GET` to `/v1/hello-world`, which is an example of directly matching a request by path.
+Try to do a `GET` to `localhost:4000/v1/{foo,bar,baz}` – they should work as normal.
+
+Then, try a `GET` to `localhost:4000/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC` – this should forward the request to Giphy's public API and respond accordingly with funny cats.
+
+You can also try a `GET` to `localhost:4000/v1/hello-world`, which is an example of directly matching a request by path.
+
+![](https://i.imgur.com/nC4RhB3.png)
+![](https://i.imgur.com/tivzp13.png)
 
 ## Setup
 
