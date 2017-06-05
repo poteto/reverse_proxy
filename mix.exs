@@ -33,6 +33,6 @@ defmodule ReverseProxy.Mixfile do
      {:httpoison, "~> 0.11"},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
-     {:terraform, "~> 1.0.0"}]
+     {:terraform, "~> 1.0.1"}]
   end
 end
